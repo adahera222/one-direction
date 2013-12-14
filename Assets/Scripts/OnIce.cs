@@ -23,11 +23,8 @@ public class OnIce : MonoBehaviour {
             EffectsScript.Instance.Splash(transform.position);
             onIce = false;
             Destroy(gameObject);
-            if (gameObject.name == "player")
-            {
-                Debug.Log("Game Over");
-            }
             updateScore();
+            checkGameOver();
         }
     }
 
@@ -38,11 +35,9 @@ public class OnIce : MonoBehaviour {
             EffectsScript.Instance.Splash(transform.position);
             onIce = false;
             Destroy(gameObject);
-            if (gameObject.name == "player")
-            {
-                Debug.Log("Game Over");
-            }
+
             updateScore();
+            checkGameOver();
 
         }
     }
@@ -55,5 +50,23 @@ public class OnIce : MonoBehaviour {
             Score score = GameObject.Find("Score").GetComponent<Score>();
             score.score += 100;
         }
+    }
+
+    void checkGameOver()
+    {
+        if (gameObject.tag == "Player")
+        {
+            Debug.Log("Player Died - Game Over");
+            Application.LoadLevel("Menu");
+            StartCoroutine("ReloadGame");
+        }
+
+    }
+
+    IEnumerable ReloadGame()
+    {
+        yield return new WaitForSeconds(2);
+
+        Application.LoadLevel("Level1");
     }
 }
