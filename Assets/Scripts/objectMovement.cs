@@ -6,6 +6,12 @@ public class objectMovement : MonoBehaviour {
     public float maxSpeed = 5;
 
     private Vector2 nudge = new Vector2(0, 0);
+    private int random;
+
+    void Start()
+    {
+        random = Random.Range(80, 120);
+    }
 
     // Update is called once per frame
     void Update()
@@ -39,12 +45,9 @@ public class objectMovement : MonoBehaviour {
     {
         float angle = (Camera.main.transform.rotation.eulerAngles.z)*Mathf.Deg2Rad;
         Vector2 g = new Vector2(Mathf.Sin( angle), -Mathf.Cos(angle));
-        //Debug.Log("Angle: " +gravity.rotation.eulerAngles.z +" Gravity:"+g.ToString());
-
-
-        rigidbody2D.AddForce(g+nudge);
-
-
-       
+        rigidbody2D.AddForce(g*random/100+nudge);
+        Vector3 spin = Vector3.zero;
+        spin.z = Random.Range(0,20);
+        transform.Rotate(spin);
     }
 }
