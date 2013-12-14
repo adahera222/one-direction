@@ -3,30 +3,48 @@ using System.Collections;
 
 public class objectMovement : MonoBehaviour {
 
-    public Vector2 speed = new Vector2(5,5);
-    public Transform gravity;
     public float maxSpeed = 5;
 
-    private Vector2 movement;
+    private Vector2 nudge = new Vector2(0, 0);
 
     // Update is called once per frame
     void Update()
     {
         Vector2 pos2d = new Vector2(transform.position.x, transform.position.y);
-        //transform.Rotate();
-        //Vector2 direction = rigidbody2D.velocity.Normalize();
+        Vector3 currentPosition = transform.position;
+        currentPosition.z = 0;
+
+        Vector3 direction = rigidbody2D.velocity.normalized;
+        Vector3 newPosition = currentPosition + direction;
+        newPosition.z = 10;
+
+        float angle = Mathf.Atan2(newPosition.x - currentPosition.x, newPosition.y - currentPosition.y) * Mathf.Rad2Deg;
+        Vector3 rotation = new Vector3(0, 0, angle);
+        transform.LookAt(newPosition, Vector3.back);// = Quaternion.Euler(rotation);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            nudge = new Vector2(50, 0);
+        }
+        else
+        {
+            nudge = Vector2.zero;
+        }
+
+
+
     }
 
     void FixedUpdate()
     {
-        //rigidbody2D.velocity = movement;
-        float angle = (gravity.rotation.eulerAngles.z)*Mathf.Deg2Rad;
+        float angle = (Camera.main.transform.rotation.eulerAngles.z)*Mathf.Deg2Rad;
         Vector2 g = new Vector2(Mathf.Sin( angle), -Mathf.Cos(angle));
         //Debug.Log("Angle: " +gravity.rotation.eulerAngles.z +" Gravity:"+g.ToString());
 
 
-        rigidbody2D.AddForce(g);
-        //rigidbody2D.velocity = g;
-        
+        rigidbody2D.AddForce(g+nudge);
+
+
+       
     }
 }

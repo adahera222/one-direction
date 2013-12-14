@@ -4,7 +4,6 @@ using System.Collections;
 public class playerMovement : MonoBehaviour {
 
     public  float speed = 5;
-    public Transform gravity;
 
     private Vector2 movement;
 
@@ -19,7 +18,7 @@ public class playerMovement : MonoBehaviour {
     void FixedUpdate()
     {
         //rigidbody2D.velocity = movement;
-        float angle = (gravity.rotation.eulerAngles.z) * Mathf.Deg2Rad;
+        float angle = (Camera.main.transform.rotation.eulerAngles.z) * Mathf.Deg2Rad;
         Vector2 g = new Vector2(Mathf.Sin(angle), -Mathf.Cos(angle));
         //Debug.Log("Angle: " + gravity.rotation.eulerAngles.z + " Gravity:" + g.ToString());
 
