@@ -15,7 +15,6 @@ public class BulletHit : MonoBehaviour {
             if (move != null)
             {
                 force = bullet.force;
-                Debug.Log("force: " + force);
                 direction = move.direction.normalized;
                 rigidbody2D.AddForce(direction * force);
                 SoundHelper.Instance.MakeHitSound();
