@@ -59,8 +59,11 @@ public class OnIce : MonoBehaviour {
     {
         if (gameObject.tag == "Player")
         {
-            Debug.Log("Player Died - Game Over");
-            Application.LoadLevel("Menu");
+            Debug.Log("Game Over");
+            var gui = GameObject.FindObjectOfType<GameOver>() as GameOver;
+            gui.activate();
+
+            
         }
 
     }

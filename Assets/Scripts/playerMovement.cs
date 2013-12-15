@@ -3,9 +3,6 @@ using System.Collections;
 
 public class playerMovement : MonoBehaviour {
 
-    public  float speed = 5;
-
-
 	// Update is called once per frame
 	void Update () {
 
@@ -17,9 +14,7 @@ public class playerMovement : MonoBehaviour {
         Vector3 newPosition = currentPosition + direction;
         newPosition.z = 10;
 
-        float angle = Mathf.Atan2(newPosition.x - currentPosition.x, newPosition.y - currentPosition.y) * Mathf.Rad2Deg;
-        Vector3 rotation = new Vector3(0, 0, angle);
-        transform.LookAt(newPosition, Vector3.back);// = Quaternion.Euler(rotation);
+        transform.LookAt(newPosition, Vector3.back);
         
 	}
 

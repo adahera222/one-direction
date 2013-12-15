@@ -18,6 +18,7 @@ public class Wind : MonoBehaviour {
         Instance = this;
     }
     public Vector2 direction = new Vector2(-1, 0);
+    public int probability = 75;
     private Vector2 movement;
     private int seed = 0;
     private int cooldown = 0;
@@ -29,7 +30,7 @@ public class Wind : MonoBehaviour {
     {
         if (cooldown < 0)
         {
-            seed = Random.Range(0, 75);
+            seed = Random.Range(0, probability);
             if (seed == 1)
             {
 
@@ -41,10 +42,6 @@ public class Wind : MonoBehaviour {
 
                 displayStart = 50;
                 canBlow = true;
-                Debug.Log(displayStart);
-                
-
-                Debug.Log("Wind");
             }
             cooldown = 100;
         }
@@ -56,16 +53,21 @@ public class Wind : MonoBehaviour {
     {
         if (displayStart <0)
         {
-            Debug.Log("Now" + Time.time);
-            Debug.Log("Start: " + displayStart);
-            Debug.Log("blow");
             movement = windForce * direction.normalized;
-            rigidbody2D.AddForce(movement);
+            var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (enemies == null || player == null) return;
+
+            foreach (var e in enemies)
+            {
+                e.rigidbody2D.AddForce(movement);
+            }
+
+            player.rigidbody2D.AddForce(movement);
             canBlow = false;
         }
         else
         {
-            Debug.Log("Not yet");
             displayStart--;
         }
         

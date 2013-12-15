@@ -352,6 +352,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 133434301}
   - 114: {fileID: 133434300}
+  - 114: {fileID: 133434302}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -371,8 +372,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnemies: 4
-  spawnTime: 2
+  spawnTime: 1
   radius: 3
+  wave: 1
+  waveSize: 5
+  spawnrate: 100
+  numberOfWaves: 10
   enemies:
   - {fileID: 100000, guid: d20b3057d0537084984e42096a50e01f, type: 2}
 --- !u!4 &133434301
@@ -386,6 +391,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &133434302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 133434299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86bcb18c1ccb0e45bf7cad572ad76c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windForce: 50
+  wind: {fileID: 100000, guid: 6ba1edf8e82dc814da74a4019952a82f, type: 2}
+  startDistance: 6
+  direction: {x: -1, y: 0}
+  probability: 50
 --- !u!1 &242245411
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +471,56 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: .560000002, y: .180000007}
   m_Center: {x: -.0299999993, y: 0}
+--- !u!1 &503538084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 503538085}
+  - 132: {fileID: 503538086}
+  m_Layer: 0
+  m_Name: Game Over
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503538085
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503538084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .185599536, y: 1.43010104, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 913819307}
+--- !u!132 &503538086
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503538084}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Text: You lose. Don't get wet, its too cold!
+  m_Anchor: 4
+  m_Alignment: 1
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 20
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967075
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &670292214
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +611,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+--- !u!1 &913819306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 913819307}
+  - 114: {fileID: 913819308}
+  m_Layer: 0
+  m_Name: Game Over
+  m_TagString: Game Over
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &913819307
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 913819306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .314400464, y: -.930101037, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 503538085}
+  - {fileID: 1799276962}
+  m_Father: {fileID: 0}
+--- !u!114 &913819308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 913819306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa6287d966df024cb05378c62c509c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text:
+  - {fileID: 503538086}
+  - {fileID: 1799276963}
 --- !u!1001 &1027506808
 Prefab:
   m_ObjectHideFlags: 0
@@ -581,9 +695,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 229d05eefd1526747b0b2fd2eee37ff4, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400008, guid: 229d05eefd1526747b0b2fd2eee37ff4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 229d05eefd1526747b0b2fd2eee37ff4, type: 2}
   m_RootGameObject: {fileID: 1972845286}
   m_IsPrefabParent: 0
@@ -797,6 +912,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fromRight: 200
   fromBottom: 200
+--- !u!1 &1799276961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1799276962}
+  - 132: {fileID: 1799276963}
+  m_Layer: 0
+  m_Name: Game Over
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1799276962
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1799276961}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .185599536, y: 1.43010104, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 913819307}
+--- !u!132 &1799276963
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1799276961}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Text: Game Over
+  m_Anchor: 4
+  m_Alignment: 1
+  m_PixelOffset: {x: 0, y: 50}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 50
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &1903415665
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,7 +1071,6 @@ GameObject:
   - 58: {fileID: 1972845291}
   - 114: {fileID: 1972845293}
   - 114: {fileID: 1972845294}
-  - 114: {fileID: 1972845295}
   m_Layer: 9
   m_Name: player
   m_TagString: Player
@@ -972,12 +1136,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1027506808}
   m_GameObject: {fileID: 1972845286}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: accb06afcab83fe4284768f4f7bea16d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!58 &1972845291
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1030,19 +1193,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snowBall: {fileID: 400000, guid: 0fda5f02abdb2d140bfaf561b20125be, type: 2}
   fireRate: 5
---- !u!114 &1972845295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400008, guid: 229d05eefd1526747b0b2fd2eee37ff4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1027506808}
-  m_GameObject: {fileID: 1972845286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a86bcb18c1ccb0e45bf7cad572ad76c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windForce: 50
-  wind: {fileID: 100000, guid: 6ba1edf8e82dc814da74a4019952a82f, type: 2}
-  startDistance: 6
-  direction: {x: -1, y: 0}
