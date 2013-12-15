@@ -23,8 +23,9 @@ public class PlayerHealth : MonoBehaviour {
 
     void Bump(Transform enemy)
     {
-        Vector3 hurtForce = transform.position - enemy.position + Vector3.up*100;
-        rigidbody2D.AddForce(hurtForce);
+        Debug.Log("Bump");
+        Vector3 hurtForce = transform.position - enemy.position;
+        rigidbody2D.AddForce(Camera.main.transform.rotation*hurtForce*100);
         SoundHelper.Instance.MakePenguinHitSound();
     }
 }

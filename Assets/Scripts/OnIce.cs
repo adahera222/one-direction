@@ -21,6 +21,7 @@ public class OnIce : MonoBehaviour {
         if (collider.tag == "Ice")
         {
             EffectsScript.Instance.Splash(transform.position);
+            SoundHelper.Instance.MakeSplashSound();
             onIce = false;
             Destroy(gameObject);
             updateScore();
@@ -33,6 +34,7 @@ public class OnIce : MonoBehaviour {
         if (collider.tag == "Hole")
         {
             EffectsScript.Instance.Splash(transform.position);
+            SoundHelper.Instance.MakeSplashSound();
             onIce = false;
             Destroy(gameObject);
 
@@ -49,6 +51,7 @@ public class OnIce : MonoBehaviour {
             Debug.Log("Enemy died");
             Score score = GameObject.Find("Score").GetComponent<Score>();
             score.score += 100;
+            SpawnController.Instance.killEnemy();
         }
     }
 
@@ -58,15 +61,8 @@ public class OnIce : MonoBehaviour {
         {
             Debug.Log("Player Died - Game Over");
             Application.LoadLevel("Menu");
-            StartCoroutine("ReloadGame");
         }
 
     }
 
-    IEnumerable ReloadGame()
-    {
-        yield return new WaitForSeconds(2);
-
-        Application.LoadLevel("Level1");
-    }
 }

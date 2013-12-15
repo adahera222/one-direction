@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: e3dc2ab5b6ce46546b57a7999759f476
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - splash: {fileID: 19800000, guid: b977e680abd8b954c9fa050fb508fff7, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

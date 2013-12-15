@@ -9,6 +9,8 @@ public class SoundHelper : MonoBehaviour {
   public static SoundHelper Instance;
 
   public AudioClip penguinHitSound;
+  public AudioClip splashSound;
+  public AudioClip snowballHitSound;
 
   void Awake()
   {
@@ -24,6 +26,16 @@ public class SoundHelper : MonoBehaviour {
   public void MakePenguinHitSound()
   {
       MakeSound(penguinHitSound);
+  }
+
+  public void MakeSplashSound()
+  {
+      MakeSound(splashSound);
+  }
+
+  public void MakeHitSound()
+  {
+      MakeSound(snowballHitSound);
   }
 
 

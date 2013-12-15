@@ -45,7 +45,7 @@ public class objectMovement : MonoBehaviour {
     {
         float angle = (Camera.main.transform.rotation.eulerAngles.z)*Mathf.Deg2Rad;
         Vector2 g = new Vector2(Mathf.Sin( angle), -Mathf.Cos(angle));
-        rigidbody2D.AddForce(g*random/100+nudge);
+        rigidbody2D.AddForce(g*random/100);
         Vector3 spin = Vector3.zero;
         spin.z = Random.Range(0,20);
         transform.Rotate(spin);

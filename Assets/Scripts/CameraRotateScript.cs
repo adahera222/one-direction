@@ -15,7 +15,7 @@ public class CameraRotateScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
  
-        if (Input.GetButtonDown("Vertical"))
+        if (Input.GetButtonDown("Rotate"))
         {
             transform.Rotate(Vector3.back, 90, 0);
         }      
